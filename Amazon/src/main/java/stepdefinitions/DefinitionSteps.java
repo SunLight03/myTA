@@ -90,6 +90,12 @@ public class DefinitionSteps {
         homePage.clickSellButton();
     }
 
+
+    @And("User opens Sign In page")
+    public void userOpensSignInPage() {
+        homePage.clickSignInButton();
+    }
+
     @And("User choose to create new Amazon account")
     public void userChooseToCreateNewAmazonAccount() {
         signInPage = pageFactoryManager.getSignInPage();
@@ -150,4 +156,6 @@ public class DefinitionSteps {
     public void labelOfCheckBoxIsChanged() {
         assertTrue(homeAudioPage.checkClimatFriendlyCheckboxLabel());
     }
+
+
 }
