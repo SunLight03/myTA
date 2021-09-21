@@ -47,6 +47,8 @@ public class HomePage extends BasePage {
     public void openMainMenu(){mainMenuButton.click();}
     public void openElectronicsMenuIten(){electronicsMenuItem.click(); }
     public void openHomeAudioMenuItem(){homeAudioMenuItem.click();}
+    public void clickSignInButton(){signInButton.click();}
+
 
 
 }
