@@ -23,9 +23,9 @@ Feature: Amazon tests
       | homePage                | keyword |
       | https://www.amazon.com/ | ASUS |
 
-  Scenario Outline: User create new account with invalid password from Sell Page
+  Scenario Outline: User create new account with invalid password
     Given User opens '<homePage>' page
-    And User opens Sell page
+    And User opens Sign In page
     And User choose to create new Amazon account
     And User enter '<name>' in name field
     And User enter '<phone>' in phone field
