@@ -26,12 +26,22 @@ public class PageFactoryManager {
         return new ProductPage(driver);
     }
 
-    public SignInPage getSignInPage() {return new SignInPage(driver);}
+    public SignInPage getSignInPage() {
+        return new SignInPage(driver);
+    }
 
-    public CreateNewAccounPage getCreateNewAccountPage() {return new CreateNewAccounPage(driver);}
+    public CreateNewAccounPage getCreateNewAccountPage() {
+        return new CreateNewAccounPage(driver);
+    }
 
-    public HomeAudioPage getHomeAudioPage(){return new HomeAudioPage(driver);}
+    public HomeAudioPage getHomeAudioPage() {
+        return new HomeAudioPage(driver);
+    }
 
-    public SellPage getSellPage(){return new SellPage(driver);}
+    public CovidBlogPage getCovid19Page() {
+        return new CovidBlogPage(driver);
+    }
+
+    public TabSwitchPage getTabSwitchPage(){return new TabSwitchPage(driver);}
 
 }
