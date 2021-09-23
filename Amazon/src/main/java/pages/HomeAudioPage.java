@@ -9,6 +9,8 @@ public class HomeAudioPage extends BasePage{
 
     @FindBy (xpath = "//li[@aria-label='Climate Pledge Friendly']//div[contains(@class,'a-checkbox')]")
     WebElement climateFriendlyCheckbox;
+    @FindBy (xpath = "//li[@aria-label='Climate Pledge Friendly']//div[contains(@class,'a-checkbox')]//input")
+    WebElement climateFriendlyCheckboxInput;
 
 
     public HomeAudioPage(WebDriver driver){
@@ -16,10 +18,11 @@ public class HomeAudioPage extends BasePage{
     }
 
     public void setClimateFriendlyCheckbox(){
+        waitVisibilityOfElement(3000, climateFriendlyCheckbox);
         climateFriendlyCheckbox.click();
     }
 
     public boolean checkClimatFriendlyCheckboxLabel(){
-        return climateFriendlyCheckbox.isSelected();
+        return climateFriendlyCheckboxInput.isSelected();
     }
 }

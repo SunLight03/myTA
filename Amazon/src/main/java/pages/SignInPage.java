@@ -16,4 +16,8 @@ public class SignInPage extends BasePage{
     public void createNewAccount(){
         createNewAccountButton.click();
     }
+
+    public boolean checkSignInPageIsOpened(){
+        return createNewAccountButton.isDisplayed();
+    }
 }
