@@ -42,6 +42,8 @@ public class PageFactoryManager {
         return new CovidBlogPage(driver);
     }
 
-    public TabSwitchPage getTabSwitchPage(){return new TabSwitchPage(driver);}
+    public TabSwitchPage getTabSwitchPage() {
+        return new TabSwitchPage(driver);
+    }
 
 }

@@ -12,8 +12,7 @@ public class HomeAudioPage extends BasePage{
     @FindBy (xpath = "//li[@aria-label='Climate Pledge Friendly']//div[contains(@class,'a-checkbox')]//input")
     WebElement climateFriendlyCheckboxInput;
 
-
-    public HomeAudioPage(WebDriver driver){
+    public HomeAudioPage(WebDriver driver) {
         super(driver);
     }
 

@@ -12,11 +12,9 @@ public class TabSwitchPage extends BasePage {
 
     String oldTab = driver.getWindowHandle();
 
-    public void checkNewTabOpens()  {
-
+    public void checkNewTabOpens() {
         ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
         newTab.remove(oldTab);
         driver.switchTo().window(newTab.get(0));
-
     }
 }

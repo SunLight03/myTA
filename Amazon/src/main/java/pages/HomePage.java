@@ -113,7 +113,7 @@ public class HomePage extends BasePage {
         covid19Info.click();
     }
 
-    public void openSignInPageFromMenu(){
+    public void openSignInPageFromMenu() {
         getSignInInMenuButton.click();
     }
 

@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ShoppingCartPage extends BasePage{
+public class ShoppingCartPage extends BasePage {
 
     @FindBy(xpath = "//div[@class='a-fixed-left-grid']//input[@value='Delete']")
     WebElement deleteButton;
@@ -14,17 +14,17 @@ public class ShoppingCartPage extends BasePage{
     @FindBy(xpath = "//div[@id='sc-active-cart']//h1")
     WebElement shoppinCartText;
 
-    public ShoppingCartPage(WebDriver driver){
+    public ShoppingCartPage(WebDriver driver) {
         super(driver);
     }
 
-    public void deleteItemFromShoppingCart(){
+    public void deleteItemFromShoppingCart() {
         waitVisibilityOfElement(3000, deleteButton);
         deleteButton.click();
-            }
+    }
 
     public boolean shoppingCartStatusMessage() {
-        waitVisibilityOfElement(3000, shoppinCartText);
+//        waitVisibilityOfElement(9000, shoppinCartText);
         return shoppinCartText.getText().contains("Cart is empty");
     }
 }

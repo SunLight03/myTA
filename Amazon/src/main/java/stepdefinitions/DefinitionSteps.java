@@ -76,6 +76,7 @@ public class DefinitionSteps {
         productPage = pageFactoryManager.getProductPage();
         productPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         productPage.addProductToCart();
+        productPage.implicitWait(30);
 
     }
 
@@ -184,7 +185,7 @@ public class DefinitionSteps {
 
     @Then("User check search first result is less then {int}")
     public void userCheckSearchFirstResultIsLessThenMaxprice(int number) {
-        searchResultPage.checkSearchResultPrice(number);
+        assertTrue(searchResultPage.checkSearchResultPrice(number));
     }
 
     @And("User opens shopping cart")
@@ -195,8 +196,8 @@ public class DefinitionSteps {
     @When("User delete item from shopping cart")
     public void userDeleteItemFromShoppingCart() {
         shoppingCartPage = pageFactoryManager.getShoppingCartPage();
-        shoppingCartPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         shoppingCartPage.deleteItemFromShoppingCart();
+        shoppingCartPage.implicitWait(360);
     }
 
 
@@ -232,7 +233,7 @@ public class DefinitionSteps {
     }
 
     @And("User opens subscribe page")
-    public void userOpensSubscribePage()  {
+    public void userOpensSubscribePage() {
         covidBlogPage.signUpButton();
         tabSwitchPage = pageFactoryManager.getTabSwitchPage();
         tabSwitchPage.checkNewTabOpens();

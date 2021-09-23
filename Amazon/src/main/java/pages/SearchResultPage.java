@@ -51,8 +51,8 @@ public class SearchResultPage extends BasePage {
         goButton.click();
     }
 
-    public boolean checkFirstCategoryContainsCategoryName(){
-       return categories.get(0).getText().contains("Books");
+    public boolean checkFirstCategoryContainsCategoryName() {
+        return categories.get(0).getText().contains("Books");
     }
 
 }

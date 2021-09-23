@@ -23,7 +23,7 @@ Feature: Amazon tests
       | homePage                | keyword |
       | https://www.amazon.com/ | ASUS    |
 
-  Scenario Outline: User create new account with invalid password
+  Scenario Outline: Create new account with invalid password
     Given User opens '<homePage>' page
     And User opens Sign In page
     And User choose to create new Amazon account
@@ -37,7 +37,7 @@ Feature: Amazon tests
       | https://www.amazon.com/ | Myname | 1111111111 | 11       |
 
 
-  Scenario Outline: User create new account with used email
+  Scenario Outline: Create new account with used email
     Given User opens '<homePage>' page
     And User opens Sign In page
     And User choose to create new Amazon account
@@ -51,7 +51,7 @@ Feature: Amazon tests
       | https://www.amazon.com/ | Myname | test@gmail.com | 1111111  |
 
 
-  Scenario Outline:User check the search price filter is working
+  Scenario Outline: Check the search price filter is working
     Given User opens '<homePage>' page
     When User makes search by keyword '<keyword>'
     And User set max price '<maxprice>'
@@ -60,7 +60,7 @@ Feature: Amazon tests
       | homePage                | keyword | maxprice |
       | https://www.amazon.com/ | sofa    | 100      |
 
-  Scenario Outline: User check the category name on search result
+  Scenario Outline: Check the category name on search result
     Given User opens '<homePage>' page
     And User choose category books is search field
     When User makes search by keyword '<keyword>'
@@ -70,7 +70,7 @@ Feature: Amazon tests
       | https://www.amazon.com/ | book    |
 
 
-  Scenario Outline: User check checkboxlabel
+  Scenario Outline: Check checkboxlabel
     Given User opens '<homePage>' page
     And User opens main menu
     And User opens menu item Electronic
@@ -82,7 +82,7 @@ Feature: Amazon tests
       | https://www.amazon.com/ |
 
 
-  Scenario Outline: User check that main category contains subcategory
+  Scenario Outline: Check that main category contains subcategory
     Given User opens '<homePage>' page
     And User opens main menu
     And wait
@@ -94,7 +94,7 @@ Feature: Amazon tests
 
 
 #работает, но оставляет открытой вкладку
-  Scenario Outline: User check that covid-19 blog opens from covid-19 info
+  Scenario Outline: Check that covid-19 blog opens from covid-19 info
     Given User opens '<homePage>' page
     When User opens covid-19 blog
     Then User check that covid-19 blog is opened
@@ -113,10 +113,10 @@ Feature: Amazon tests
     When User makes search by keyword '<keyword>'
     And User opens first product page
     And User click add to cart
-    And wait
     And User opens '<homePage>' page
     And User opens shopping cart
     When User delete item from shopping cart
+    And wait
     Then User checks that cart is empty
     Examples:
       | homePage                | keyword |
