@@ -7,10 +7,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Given;
 import manager.PageFactoryManager;
+
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,7 +29,8 @@ public class DefinitionSteps {
     SignInPage signInPage;
     CreateNewAccounPage createNewAccounPage;
     HomeAudioPage homeAudioPage;
-    SellPage sellPage;
+    CovidBlogPage covidBlogPage;
+    TabSwitchPage tabSwitchPage;
     PageFactoryManager pageFactoryManager;
 
     @Before
@@ -37,15 +40,17 @@ public class DefinitionSteps {
         driver.manage().window().maximize();
         pageFactoryManager = new PageFactoryManager(driver);
     }
+
     @After
     public void tearDown() {
         driver.close();
     }
+
     @And("User opens {string} page")
-        public void openPage(final String url) {
-            homePage = pageFactoryManager.getHomePage();
-            homePage.openHomePage(url);
-        }
+    public void openPage(final String url) {
+        homePage = pageFactoryManager.getHomePage();
+        homePage.openHomePage(url);
+    }
 
     @And("User checks search field visibility")
     public void userChecksSearchFieldVisibility() {
@@ -67,9 +72,11 @@ public class DefinitionSteps {
 
     @And("User click add to cart")
     public void userClickAddToCart() {
+
         productPage = pageFactoryManager.getProductPage();
-        productPage.addProductToCart();
         productPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        productPage.addProductToCart();
+
     }
 
     @Then("User checks that amount of products in cart icon {string} and list of products is visible")
@@ -82,17 +89,14 @@ public class DefinitionSteps {
     @Then("User checks that first search results {string}")
     public void userChecksThatSearchResultsKeyword(final String keyword) {
         searchResultPage = pageFactoryManager.getSearchResultsPage();
-         assertTrue(searchResultPage.searchResultNamesOfProducts(keyword));
-    }
-
-    @And("User opens Sell page")
-    public void userOpensSellPage() {
-        homePage.clickSellButton();
+        assertTrue(searchResultPage.searchResultNamesOfProducts(keyword));
     }
 
 
     @And("User opens Sign In page")
     public void userOpensSignInPage() {
+        homePage.movetoHelloButton();
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         homePage.clickSignInButton();
     }
 
@@ -122,7 +126,7 @@ public class DefinitionSteps {
 
     @When("User click on verify button")
     public void userClickOnVerifyButton() {
-    createNewAccounPage.pressVerifyButton();
+        createNewAccounPage.pressVerifyButton();
     }
 
 
@@ -130,16 +134,19 @@ public class DefinitionSteps {
     public void userSeeMassageThatPasswordInvalid() {
         assertTrue(createNewAccounPage.checkInvalidPasswordMassege());
     }
+
     @And("User opens main menu")
     public void userOpensMainMenu() {
         homePage.openMainMenu();
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
     }
+
     @And("User opens menu item Electronic")
     public void userOpensMenuItemElectronic() {
         homePage.openElectronicsMenuIten();
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
     }
+
     @And("User opens menu item Home audio")
     public void userOpensMenuItemHomeAudio() {
         homePage.openHomeAudioMenuItem();
@@ -157,5 +164,98 @@ public class DefinitionSteps {
         assertTrue(homeAudioPage.checkClimatFriendlyCheckboxLabel());
     }
 
+    @Then("User see massage, that email is in use")
+    public void userSeeMassageThatEmailIsInUse() {
+        createNewAccounPage.checkEmailInUseAlert();
+    }
 
+    @And("User set max price {string}")
+    public void userSetMaxPriceMaxPrice(String maxPrice) {
+        searchResultPage = pageFactoryManager.getSearchResultsPage();
+        searchResultPage.setMaxPrice(maxPrice);
+        searchResultPage.clickGoButton();
+    }
+
+    @And("wait")
+    public void wait2() throws InterruptedException {
+        Thread.sleep(5000);
+
+    }
+
+    @Then("User check search first result is less then {int}")
+    public void userCheckSearchFirstResultIsLessThenMaxprice(int number) {
+        searchResultPage.checkSearchResultPrice(number);
+    }
+
+    @And("User opens shopping cart")
+    public void userOpensShoppingCart() {
+        homePage.openShoppinCart();
+    }
+
+    @When("User delete item from shopping cart")
+    public void userDeleteItemFromShoppingCart() {
+        shoppingCartPage = pageFactoryManager.getShoppingCartPage();
+        shoppingCartPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        shoppingCartPage.deleteItemFromShoppingCart();
+    }
+
+
+    @Then("User checks that cart is empty")
+    public void userChecksThatCartIsEmpty() {
+        assertTrue(shoppingCartPage.shoppingCartStatusMessage());
+    }
+
+    @And("User choose category books is search field")
+    public void userChooseCagoryBooksIsSearchField() {
+        homePage.openSearchCategoryMenu();
+        homePage.chooseBooksCategory();
+
+    }
+
+
+    @Then("User see, that first category name on search result page contains books")
+    public void userSeeThatFirstCategoryNameOnSearchResultPageContainsBooks() {
+        searchResultPage = pageFactoryManager.getSearchResultsPage();
+        assertTrue(searchResultPage.checkFirstCategoryContainsCategoryName());
+    }
+
+
+    @When("User opens covid-19 blog")
+    public void userOpensCovidBlog() {
+        homePage.openCovid19Info();
+    }
+
+    @Then("User check that covid-19 blog is opened")
+    public void userCheckThatCovidBlogIsOpened() {
+        covidBlogPage = pageFactoryManager.getCovid19Page();
+        assertTrue(covidBlogPage.checkCovidBlogTitle());
+    }
+
+    @And("User opens subscribe page")
+    public void userOpensSubscribePage()  {
+        covidBlogPage.signUpButton();
+        tabSwitchPage = pageFactoryManager.getTabSwitchPage();
+        tabSwitchPage.checkNewTabOpens();
+    }
+
+    @Then("User checked that email field is displayed")
+    public void userCheckedThatEmailFieldIsDisplaeyed() {
+        assertTrue(covidBlogPage.emailInputFieldIsDispleyed());
+    }
+
+    @When("User opens Amazon Music")
+    public void userOpensAmazonMusic() {
+        homePage.openAppleMusicMenuItem();
+    }
+
+    @And("User click Sign In icon in top of menu")
+    public void userClickSignInIconInTopOfMenu() {
+        homePage.openSignInPageFromMenu();
+    }
+
+    @Then("User check that Sign In page is opened")
+    public void userCheckThatSignInPageIsOpened() {
+        signInPage = pageFactoryManager.getSignInPage();
+        assertTrue(signInPage.checkSignInPageIsOpened());
+    }
 }
