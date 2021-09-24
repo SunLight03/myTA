@@ -43,7 +43,7 @@ public class DefinitionSteps {
 
     @After
     public void tearDown() {
-        driver.close();
+        driver.quit();
     }
 
     @And("User opens {string} page")
@@ -76,7 +76,6 @@ public class DefinitionSteps {
         productPage = pageFactoryManager.getProductPage();
         productPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         productPage.addProductToCart();
-        productPage.implicitWait(30);
 
     }
 
@@ -175,10 +174,12 @@ public class DefinitionSteps {
         searchResultPage = pageFactoryManager.getSearchResultsPage();
         searchResultPage.setMaxPrice(maxPrice);
         searchResultPage.clickGoButton();
+        searchResultPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+
     }
 
-    @And("wait")
-    public void wait2() throws InterruptedException {
+    @And("Wait for action completed")
+    public void waitActionCompleted() throws InterruptedException {
         Thread.sleep(5000);
 
     }
@@ -197,7 +198,6 @@ public class DefinitionSteps {
     public void userDeleteItemFromShoppingCart() {
         shoppingCartPage = pageFactoryManager.getShoppingCartPage();
         shoppingCartPage.deleteItemFromShoppingCart();
-        shoppingCartPage.implicitWait(360);
     }
 
 

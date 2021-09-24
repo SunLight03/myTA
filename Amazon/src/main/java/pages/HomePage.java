@@ -69,12 +69,12 @@ public class HomePage extends BasePage {
 
 
     public void openMainMenu() {
-        waitVisibilityOfElement(3000, mainMenuButton);
+        waitVisibilityOfElement(3, mainMenuButton);
         mainMenuButton.click();
     }
 
     public void openElectronicsMenuIten() {
-        waitVisibilityOfElement(3000, electronicsMenuItem);
+        waitVisibilityOfElement(3, electronicsMenuItem);
         electronicsMenuItem.click();
     }
 

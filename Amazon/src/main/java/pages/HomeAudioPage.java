@@ -17,7 +17,7 @@ public class HomeAudioPage extends BasePage{
     }
 
     public void setClimateFriendlyCheckbox(){
-        waitVisibilityOfElement(3000, climateFriendlyCheckbox);
+        waitVisibilityOfElement(3, climateFriendlyCheckbox);
         climateFriendlyCheckbox.click();
     }
 

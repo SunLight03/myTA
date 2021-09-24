@@ -28,8 +28,24 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void waitElementToBeClickable(long timeToWait, WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, timeToWait);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
     public void implicitWait(long timeToWait) {
         driver.manage().timeouts().implicitlyWait(timeToWait, TimeUnit.SECONDS);
+    }
+
+
+    public void waitForAjaxToComplete(long timeToWait) {
+        new WebDriverWait(driver, timeToWait).until(
+                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return window.jQuery != undefined && jQuery.active == 0;"));
+    }
+
+    public void waitForAjaxToCompletePdp(long timeToWait) {
+        new WebDriverWait(driver, timeToWait).until(
+                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return window.jQuery != undefined && jQuery.active <=2;"));
     }
 
 }

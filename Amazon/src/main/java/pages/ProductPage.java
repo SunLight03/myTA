@@ -20,7 +20,7 @@ public class ProductPage extends BasePage {
     }
 
     public void addProductToCart() {
-        waitVisibilityOfElement(3000, addToCartButton);
+        waitVisibilityOfElement(3, addToCartButton);
         addToCartButton.click();
     }
 

@@ -39,11 +39,12 @@ public class SearchResultPage extends BasePage {
     }
 
     public void setMaxPrice(String maxprice) {
+        waitVisibilityOfElement(3, maxPriceField);
         maxPriceField.sendKeys(maxprice);
     }
 
     public boolean checkSearchResultPrice(int number) {
-        int i = Integer.parseInt(searchResultPrice.get(0).getText());
+        int i = Integer.parseInt(searchResultPrice.get(1).getText());
         return i <= number;
     }
 

@@ -11,7 +11,7 @@ public class ShoppingCartPage extends BasePage {
     @FindBy(xpath = "//span[@id='nav-cart-count']")
     WebElement countOfProductsInTheCart;
 
-    @FindBy(xpath = "//div[@id='sc-active-cart']//h1")
+    @FindBy(xpath = "//div[@id='sc-active-cart']//div[@data-action='delete']//span")
     WebElement shoppinCartText;
 
     public ShoppingCartPage(WebDriver driver) {
@@ -19,12 +19,11 @@ public class ShoppingCartPage extends BasePage {
     }
 
     public void deleteItemFromShoppingCart() {
-        waitVisibilityOfElement(3000, deleteButton);
+        waitVisibilityOfElement(3, deleteButton);
         deleteButton.click();
     }
 
     public boolean shoppingCartStatusMessage() {
-//        waitVisibilityOfElement(9000, shoppinCartText);
-        return shoppinCartText.getText().contains("Cart is empty");
+        return shoppinCartText.getText().contains("was removed from Shopping Cart.");
     }
 }
